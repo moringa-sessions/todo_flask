@@ -13,10 +13,14 @@ class User(db.Model):
     is_approved = db.Column(db.Boolean, default=False)
     password=db.Column(db.String(128), nullable=False)
 
+    todos = db.relationship("Todo", backref="user", lazy=True)
 
 class Tags(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), nullable=False)
+
+    todos = db.relationship("Todo", backref="tag", lazy=True)
+
 
 
 class Todo(db.Model):
@@ -28,4 +32,7 @@ class Todo(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False )
     tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), nullable=False )
+
+
+
 
