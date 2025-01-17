@@ -17,6 +17,7 @@ def fetch_users():
             'id':user.id,
             'email':user.email,
             'is_approved': user.is_approved,
+            'is_admin': user.is_admin,
             'username':user.username,
             "todos":[
                 {
@@ -71,9 +72,9 @@ def update_users(user_id):
 
     if user:
         data = request.get_json()
-        username = data['username']
-        email = data['email']
-        password = data['password']
+        username = data.get('username', user.username)
+        email = data.get('email', user.email)
+        password = data.get('password', user.password)
 
         check_username = User.query.filter_by(username=username and id!=user.id).first()
         check_email = User.query.filter_by(email=email and id!=user.id).first()
