@@ -2,6 +2,8 @@
 from flask import jsonify, request, Blueprint
 from models import db, User
 from werkzeug.security import generate_password_hash
+from app import app, mail
+from flask_mail import Message
 
 user_bp = Blueprint("user_bp", __name__)
 
@@ -42,7 +44,7 @@ def fetch_users():
 
     return jsonify(user_list)
 
-
+# Add user
 @user_bp.route("/users", methods=["POST"])
 def add_users():
     data = request.get_json()
@@ -62,7 +64,19 @@ def add_users():
         new_user = User(username=username, email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
-        return jsonify({"success":"Added successfully"}), 201
+        try:
+            msg = Message(
+                subject="Welcome to Todo App",
+                sender=app.config["MAIL_DEFAULT_SENDER"],
+                recipients=[email],
+                body="This is a test email sent from a Flask Application"
+
+            )
+            mail.send(msg)
+            return jsonify({"success":"User saved successfully!"}), 201
+        
+        except Exception as e:
+            return jsonify({"message": f"Failed to send {e}"})
 
 
 # Update
