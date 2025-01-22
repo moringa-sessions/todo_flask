@@ -4,9 +4,12 @@ from models import db, TokenBlocklist
 from flask_jwt_extended import JWTManager
 from datetime import timedelta
 from flask_mail import Mail
+from flask_cors import CORS
 
 app = Flask(__name__)
 
+
+CORS(app)
 # migration initialization
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 migrate = Migrate(app, db)

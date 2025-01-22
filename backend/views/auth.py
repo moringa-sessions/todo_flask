@@ -37,6 +37,7 @@ def current_user():
             'id':user.id,
             'email':user.email,
             'is_approved': user.is_approved,
+            'is_admin': user.is_admin,
             'username':user.username
         }
 

@@ -64,19 +64,19 @@ def add_users():
         new_user = User(username=username, email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
-        try:
-            msg = Message(
-                subject="Welcome to Todo App",
-                sender=app.config["MAIL_DEFAULT_SENDER"],
-                recipients=[email],
-                body="This is a test email sent from a Flask Application"
+        # try:
+        #     msg = Message(
+        #         subject="Welcome to Todo App",
+        #         sender=app.config["MAIL_DEFAULT_SENDER"],
+        #         recipients=[email],
+        #         body="This is a test email sent from a Flask Application"
 
-            )
-            mail.send(msg)
-            return jsonify({"success":"User saved successfully!"}), 201
+        #     )
+        #     mail.send(msg)
+        return jsonify({"msg":"User saved successfully!"}), 201
         
-        except Exception as e:
-            return jsonify({"message": f"Failed to send {e}"})
+        # except Exception as e:
+        #     return jsonify({"error": f"Failed to send {e}"}), 406
 
 
 # Update
