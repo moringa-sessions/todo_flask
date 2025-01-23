@@ -9,7 +9,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import NoPage from "./pages/NoPage"
 import Profile from "./pages/Profile"
-import SingleTodo from "./pages/NoPage"
+import SingleTodo from "./pages/SingleTodo"
 import { UserProvider } from './context/UserContext';
 import { TodoProvider } from './context/TodoContext';
 import AddTodo from './pages/AddTodo';
@@ -30,6 +30,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="profile" element={<Profile />} />
           <Route path="addtodo" element={<AddTodo />} />
+          <Route path="todo/:id" element={<SingleTodo />} />
 
           <Route path="*" element={<NoPage />} />
         </Route>
