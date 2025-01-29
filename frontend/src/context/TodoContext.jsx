@@ -17,7 +17,7 @@ export const TodoProvider = ({ children }) =>
 
     // ================================ TAGS =====================================
    useEffect(()=>{
-        fetch('http://127.0.0.1:5000/tags',{
+        fetch('https://todo-flask-65o6.onrender.com/tags',{
                 method:"GET",
                 headers: {
                     'Content-type': 'application/json'
@@ -35,7 +35,7 @@ export const TodoProvider = ({ children }) =>
 
     // Fetch Todos
     useEffect(()=>{
-        fetch('http://127.0.0.1:5000/todos',{
+        fetch('https://todo-flask-65o6.onrender.com/todos',{
                 method:"GET",
                 headers: {
                     'Content-type': 'application/json',
@@ -54,7 +54,7 @@ export const TodoProvider = ({ children }) =>
     {
        
                 toast.loading("Adding todo ... ")
-                fetch("http://127.0.0.1:5000/todo/add",{
+                fetch("https://todo-flask-65o6.onrender.com/todo/add",{
                     method:"POST",
                     headers: {
                         'Content-type': 'application/json',
@@ -99,7 +99,7 @@ export const TodoProvider = ({ children }) =>
     const deleteTodo = (id) => 
     {
         toast.loading("Deleting todo ... ")
-        fetch(`http://127.0.0.1:5000/todo/${id}`,{
+        fetch(`https://todo-flask-65o6.onrender.com/todo/${id}`,{
             method:"DELETE",
             headers: {
                 'Content-type': 'application/json',
