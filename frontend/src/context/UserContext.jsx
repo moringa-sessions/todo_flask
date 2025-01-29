@@ -18,7 +18,7 @@ export const UserProvider = ({ children }) =>
     const login = (email, password) => 
     {
         toast.loading("Logging you in ... ")
-        fetch("https://todo-flask-4nu9.onrender.com/login",{
+        fetch("http://127.0.0.1:5000/login",{
             method:"POST",
             headers: {
                 'Content-type': 'application/json',
@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) =>
 
                 setAuthToken(response.access_token)
 
-                fetch('https://todo-flask-4nu9.onrender.com/current_user',{
+                fetch('http://127.0.0.1:5000/current_user',{
                     method:"GET",
                     headers: {
                         'Content-type': 'application/json',
@@ -72,7 +72,7 @@ export const UserProvider = ({ children }) =>
     {
 
         toast.loading("Logging out ... ")
-        fetch("https://todo-flask-4nu9.onrender.com/logout",{
+        fetch("http://127.0.0.1:5000/logout",{
             method:"DELETE",
             headers: {
                 'Content-type': 'application/json',
@@ -108,7 +108,7 @@ export const UserProvider = ({ children }) =>
     {
         console.log("Current user fcn ",authToken);
         
-        fetch('https://todo-flask-4nu9.onrender.com/current_user',{
+        fetch('http://127.0.0.1:5000/current_user',{
             method:"GET",
             headers: {
                 'Content-type': 'application/json',
@@ -130,7 +130,7 @@ export const UserProvider = ({ children }) =>
     const addUser = (username, email, password) => 
     {
         toast.loading("Registering ... ")
-        fetch("https://todo-flask-4nu9.onrender.com/users",{
+        fetch("http://127.0.0.1:5000/users",{
             method:"POST",
             headers: {
                 'Content-type': 'application/json',
