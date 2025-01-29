@@ -68,11 +68,34 @@ export const UserProvider = ({ children }) =>
         })
     };
 
-    const logout = async () => 
+    const logout = () => 
     {
-        sessionStorage.removeItem("token");
-        setAuthToken(null)
-        setCurrentUser(null)
+
+        toast.loading("Logging out ... ")
+        fetch("http://127.0.0.1:5000/logout",{
+            method:"DELETE",
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${authToken}`
+              },
+       
+        })
+        .then((resp)=>resp.json())
+        .then((response)=>{
+           console.log(response);
+           
+            if(response.success)
+            {
+                sessionStorage.removeItem("token");
+                setAuthToken(null)
+                setCurrentUser(null)
+
+                toast.dismiss()
+                toast.success("Successfully Logged out")
+
+                navigate("/login")
+            }
+        })
 
     };
 
