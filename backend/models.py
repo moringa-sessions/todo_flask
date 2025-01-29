@@ -15,7 +15,7 @@ class User(db.Model):
     is_approved = db.Column(db.Boolean, default=False)
     is_admin = db.Column(db.Boolean, default=False)
 
-    password=db.Column(db.String(128), nullable=False)
+    password=db.Column(db.String(512), nullable=False)
 
     todos = db.relationship("Todo", backref="user", lazy=True)
     # Establishes a one-to-many relationship between the User model and the Todo model. 
